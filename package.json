@@ -1,19 +1,24 @@
 {
-  "name": "cash-register-2",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JeelRajodiya/cash-register-2.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JeelRajodiya/cash-register-2/issues"
-  },
-  "homepage": "https://github.com/JeelRajodiya/cash-register-2#readme"
+	"name": "my-app",
+	"version": "0.1.0",
+	"description": "",
+	"scripts": {
+		"dev": "vite --port 3000",
+		"preview": "vite preview",
+		"build": "vite build",
+		"typecheck": "tsc --noEmit",
+		"typewatch": "tsc --noEmit --watch"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"babel-preset-nano-react-app": "^0.1.0",
+		"vite": "^3.0.3",
+		"typescript": "^4.7.4",
+		"@types/react": "^18.0.15",
+		"@types/react-dom": "^18.0.6"
+	}
 }
