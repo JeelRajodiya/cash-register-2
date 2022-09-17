@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
+import DB from "../util/Database";
+export default async (request: VercelRequest, response: VercelResponse) => {
+	const r = await DB.users.find({}).toArray();
 
-export default (request: VercelRequest, response: VercelResponse) => {
-	const { name } = request.query;
-
-	response.status(200).send(`Hello ${name}!`);
+	response.send(r);
 };
