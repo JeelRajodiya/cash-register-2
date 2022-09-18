@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { v4 } from "uuid";
 import md5 from "md5";
-import DB from "../util/database";
+import DB from "./util/database";
 export default function handler(
 	request: VercelRequest,
 	response: VercelResponse
