@@ -2,6 +2,7 @@ export interface User {
 	userID: string;
 	passwordHash: string;
 	email: string;
+	sessions: string[];
 }
 
 export interface Entry {
