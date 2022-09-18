@@ -1,3 +1,5 @@
+import { VercelRequest, VercelResponse } from "@vercel/node";
+
 export interface User {
 	userID: string;
 	passwordHash: string;
@@ -12,3 +14,5 @@ export interface Entry {
 	description?: string;
 	date: Date;
 }
+
+export type Method = (request: VercelRequest, response: VercelResponse) => any;

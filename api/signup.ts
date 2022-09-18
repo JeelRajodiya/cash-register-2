@@ -1,6 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { v4 } from "uuid";
 import md5 from "md5";
+import type { Method } from "../util/types";
 import DB from "../util/database";
 export default function handler(
 	request: VercelRequest,
@@ -11,7 +12,10 @@ export default function handler(
 		DELETE,
 	};
 	if (request.method !== undefined) {
-		return methodMap[request.method](request, response);
+		return methodMap[request.method as keyof typeof methodMap](
+			request,
+			response
+		);
 	} else {
 		return response
 			.status(400)
