@@ -130,6 +130,7 @@
     userID:string;
     passwordHash:string;
     email:string;
+    sessions:string[];
 }
 ```
 
