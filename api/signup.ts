@@ -1,7 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { v4 } from "uuid";
 import md5 from "md5";
-import type { Method } from "../util/types";
 import DB from "../util/database";
 export default function handler(
 	request: VercelRequest,
@@ -84,7 +83,7 @@ async function DELETE(request: VercelRequest, response: VercelResponse) {
 		)
 	)?.passwordHash;
 	if (passwordHash !== md5(password)) {
-		return response.status(403).send("Wrong password!");
+		return response.status(403).send("Wrong password or session!");
 	}
 	const deleteReq = await DB.users.deleteOne({
 		email,

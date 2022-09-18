@@ -14,5 +14,3 @@ export interface Entry {
 	description?: string;
 	date: Date;
 }
-
-export type Method = (request: VercelRequest, response: VercelResponse) => any;
