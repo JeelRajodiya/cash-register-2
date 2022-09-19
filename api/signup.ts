@@ -10,7 +10,10 @@ export default function handler(
 		POST,
 		DELETE,
 	};
-	if (request.method !== undefined) {
+	if (
+		request.method !== undefined &&
+		Object.keys(methodMap).includes(request.method)
+	) {
 		return methodMap[request.method as keyof typeof methodMap](
 			request,
 			response

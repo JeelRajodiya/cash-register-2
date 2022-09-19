@@ -14,5 +14,6 @@ class DB {
 		this.entries = this.db.collection("entries");
 	}
 }
+const db = new DB();
 
-export default new DB();
+export default db;

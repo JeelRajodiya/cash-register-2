@@ -9,8 +9,12 @@ export default function handler(
 	const methodMap = {
 		POST,
 		DELETE,
+		GET,
 	};
-	if (request.method !== undefined) {
+	if (
+		request.method !== undefined &&
+		Object.keys(methodMap).includes(request.method)
+	) {
 		return methodMap[request.method as keyof typeof methodMap](
 			request,
 			response
@@ -27,6 +31,7 @@ export default function handler(
 }
 
 async function POST(request: VercelRequest, response: VercelResponse) {
+	console.time("POST");
 	const body = request.body;
 	const [email, password] = [body.email, body.password];
 	if (email === undefined || password === undefined) {
@@ -53,6 +58,7 @@ async function POST(request: VercelRequest, response: VercelResponse) {
 	if (!updateEvent) {
 		return response.status(500).send("something went wrong.");
 	}
+	console.timeEnd("POST");
 
 	return response.json({ session: newSession });
 }
@@ -80,4 +86,7 @@ async function DELETE(request: VercelRequest, response: VercelResponse) {
 	}
 
 	return response.send(200);
+}
+function GET(request: VercelRequest, response: VercelResponse) {
+	return response.status(200).send("OK");
 }
