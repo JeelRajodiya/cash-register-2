@@ -1,5 +1,3 @@
-import { VercelRequest, VercelResponse } from "@vercel/node";
-
 export interface User {
 	userID: string;
 	passwordHash: string;
