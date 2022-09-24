@@ -9,6 +9,6 @@ export interface Entry {
 	userID: string;
 	entryID: string;
 	amount: number;
-	description?: string;
+	description: string;
 	date: Date;
 }
