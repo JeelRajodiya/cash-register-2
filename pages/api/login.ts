@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 import { v4 } from "uuid";
 import md5 from "md5";
-import DB from "./util/database";
+import DB from "../util/database";
 export default function handler(
 	request: NextApiRequest,
 	response: NextApiResponse
@@ -10,7 +10,6 @@ export default function handler(
 	const methodMap = {
 		POST,
 		DELETE,
-		GET,
 	};
 	if (
 		request.method !== undefined &&
@@ -87,7 +86,4 @@ async function DELETE(request: NextApiRequest, response: NextApiResponse) {
 	}
 
 	return response.send(200);
-}
-function GET(request: NextApiRequest, response: NextApiResponse) {
-	return response.status(200).send("OK");
 }
