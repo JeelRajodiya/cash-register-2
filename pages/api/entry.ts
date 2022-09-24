@@ -41,7 +41,7 @@ async function POST(request: NextApiRequest, response: NextApiResponse) {
 			.status(400)
 			.send("Please add  session and amount in request.");
 	}
-	const user = await DB.users.findOne({ sessions: { $in: session } });
+	const user = await DB.users.findOne({ sessions: { $in: [session] } });
 	if (user === null) {
 		return response
 			.status(403)
@@ -49,15 +49,22 @@ async function POST(request: NextApiRequest, response: NextApiResponse) {
 	}
 	const userID = user.userID;
 	const entryID = uuidV4();
+	const amount = Number(amountStr);
+	if (amount > 10000000 || amount < -10000000) {
+		return response
+			.status(403)
+			.send("Amount should be in range [-10000000,10000000].");
+	}
 	const insertEvent = await DB.entries.insertOne({
 		userID,
 		entryID,
 		date,
-		amount: Number(amountStr),
+		amount,
 		description,
 	});
 	if (insertEvent.acknowledged === false) {
 		return response.status(500).send("Something went wrong");
 	}
+
 	return response.send(entryID);
 }
