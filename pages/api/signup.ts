@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { v4 } from "uuid";
 import md5 from "md5";
-import DB from "../util/database";
+import DB from "./util/database";
 export default function handler(
 	request: NextApiRequest,
 	response: NextApiResponse

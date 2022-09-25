@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-import DB from "../util/database";
-import type { User } from "../util/types";
+import DB from "./util/database";
+import type { User } from "./util/types";
 import { v4 as uuidV4 } from "uuid";
 export default function handler(
 	request: NextApiRequest,
