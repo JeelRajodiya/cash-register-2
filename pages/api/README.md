@@ -10,6 +10,7 @@
  - Logout
  - Delete Account
  - Search 
+ - Get Graph
 
 
 ## Signup 
@@ -122,8 +123,19 @@
     maxResults?:number; // defaults to 50
 }
 ```
-# DataTypes
+## Get Graph 
 
+`GET ./api/graph`
+**Request**
+```
+{
+    token:string;
+    filterDate:Date
+    
+}
+```
+
+# DataTypes
 ## User
 ```
 {

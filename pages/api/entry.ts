@@ -9,6 +9,7 @@ export default function handler(
 ) {
 	const methodMap = {
 		POST,
+		GET,
 	};
 	if (
 		request.method !== undefined &&
@@ -67,4 +68,19 @@ async function POST(request: NextApiRequest, response: NextApiResponse) {
 	}
 
 	return response.send(entryID);
+}
+
+async function GET(request: NextApiRequest, response: NextApiResponse) {
+	const body = request.body;
+	const session = body.session;
+	const maxResults = body.maxResults;
+	if (session === undefined) {
+		return response.status(400).send("Please add  session  in request.");
+	}
+	const user = await DB.users.findOne({ sessions: { $in: [session] } });
+	if (user === null) {
+		return response
+			.status(403)
+			.send("Session does not exists. maybe you were logged out. ");
+	}
 }
