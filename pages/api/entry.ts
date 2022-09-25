@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 import DB from "./util/database";
-import type { User } from "./util/types";
 import { v4 as uuidV4 } from "uuid";
 export default function handler(
 	request: NextApiRequest,
@@ -35,7 +34,7 @@ async function POST(request: NextApiRequest, response: NextApiResponse) {
 	const body = request.body;
 	const session = body.session;
 	const amountStr = body.amount;
-	const description = body.description ? body.description : "-";
+	const description = body.description ? (body.description as string) : "-";
 	const date = body.date ? new Date(body.date) : new Date();
 
 	if (session === undefined || amountStr === undefined) {
@@ -56,6 +55,14 @@ async function POST(request: NextApiRequest, response: NextApiResponse) {
 		return response
 			.status(403)
 			.send("Amount should be in range [-10000000,10000000].");
+	}
+	const maxCharacters = 100;
+	if (description.length > maxCharacters) {
+		return response
+			.status(400)
+			.send(
+				` only ${maxCharacters} characters are allowed.Got ${description.length} characters!`
+			);
 	}
 	const insertEvent = await DB.entries.insertOne({
 		userID,
