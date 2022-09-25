@@ -31,6 +31,7 @@ async function GET(request: NextApiRequest, response: NextApiResponse) {
 	const query = request.query;
 	const session = query.session;
 	const queryText = query.queryText as string;
+	const maxResults = query.maxResults ? Number(query.maxResults) : 0;
 
 	if (session === undefined || queryText === undefined) {
 		return response
@@ -52,6 +53,8 @@ async function GET(request: NextApiRequest, response: NextApiResponse) {
 				{ amount: Number(queryText) },
 			],
 		})
+		.sort({ date: -1 })
+		.limit(maxResults)
 		.toArray();
 	return response.json(results);
 }
