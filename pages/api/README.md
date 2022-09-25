@@ -116,7 +116,7 @@
 ```
 
 ## Search
-`GET ./api/entry/search?q=XXX`
+`GET ./api/search?q=XXX`
 **Request**
 ```
 {
