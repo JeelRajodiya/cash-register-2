@@ -28,7 +28,7 @@
  **Response**:  
  ```
 {  
-    Token:string    
+    session:string    
  }
 ```
  ## Login
@@ -45,7 +45,7 @@
  **Response**:  
  ```
 {  
-    Token:string    
+    session:string    
  }
 ```
 
@@ -55,7 +55,7 @@
  **Request**:
  ```
  {  
-    token:string    
+    session:string    
  }
 ```
 ## Delete Account
@@ -64,7 +64,7 @@
  **Request**:
  ```
  {  
-    token:string
+    session:string
     email:string;
     password:string;
  }
@@ -76,7 +76,7 @@
 **Request** 
 ```
 {
-    token:string;
+    session:string;
     amount:number;
     description?:number;
 }
@@ -88,11 +88,12 @@
 }
 ```
 ## Read Entries
-`GET ./api/entry`
+
+`GET ./api/entry?session=XXXX-XXXX-XXXX-XXXX&&maxResults=n`
 **Request** 
 ```
 {
-    token:string;
+    session:string;
     maxResults:number; //defaults to 15
 }
 ```
@@ -109,7 +110,7 @@
 **Request**
 ```
 {
-    token:string;
+    session:string;
     entryID:string;
 }
 ```
@@ -119,7 +120,7 @@
 **Request**
 ```
 {
-    token:string;
+    session:string;
     maxResults?:number; // defaults to 50
 }
 ```
@@ -129,7 +130,7 @@
 **Request**
 ```
 {
-    token:string;
+    session:string;
     filterDate:Date
     
 }

@@ -71,9 +71,10 @@ async function POST(request: NextApiRequest, response: NextApiResponse) {
 }
 
 async function GET(request: NextApiRequest, response: NextApiResponse) {
-	const body = request.body;
-	const session = body.session;
-	const maxResults = body.maxResults;
+	const query = request.query;
+	const session = query.session;
+
+	const maxResults = query.maxResults ? Number(query.maxResults) : 0;
 	if (session === undefined) {
 		return response.status(400).send("Please add  session  in request.");
 	}
@@ -83,4 +84,13 @@ async function GET(request: NextApiRequest, response: NextApiResponse) {
 			.status(403)
 			.send("Session does not exists. maybe you were logged out. ");
 	}
+	const userID = user.userID;
+	console.log(userID);
+
+	const results = await DB.entries
+		.find({ userID })
+		.sort({ date: -1 })
+		.limit(maxResults)
+		.toArray();
+	return response.json(results);
 }
