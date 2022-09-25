@@ -60,9 +60,7 @@ async function POST(request: NextApiRequest, response: NextApiResponse) {
 	if (description.length > maxCharacters) {
 		return response
 			.status(400)
-			.send(
-				` only ${maxCharacters} characters are allowed.Got ${description.length} characters!`
-			);
+			.send(` only ${maxCharacters} characters are allowed.`);
 	}
 	const insertEvent = await DB.entries.insertOne({
 		userID,
