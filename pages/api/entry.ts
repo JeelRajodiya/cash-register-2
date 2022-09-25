@@ -10,6 +10,7 @@ export default function handler(
 	const methodMap = {
 		POST,
 		GET,
+		DELETE,
 	};
 	if (
 		request.method !== undefined &&
@@ -85,7 +86,6 @@ async function GET(request: NextApiRequest, response: NextApiResponse) {
 			.send("Session does not exists. maybe you were logged out. ");
 	}
 	const userID = user.userID;
-	console.log(userID);
 
 	const results = await DB.entries
 		.find({ userID })
@@ -93,4 +93,31 @@ async function GET(request: NextApiRequest, response: NextApiResponse) {
 		.limit(maxResults)
 		.toArray();
 	return response.json(results);
+}
+
+async function DELETE(request: NextApiRequest, response: NextApiResponse) {
+	const body = request.body;
+	const session = body.session;
+	const entryID = body.entryID;
+
+	if (session === undefined || entryID === undefined) {
+		return response
+			.status(400)
+			.send("Please add  session and entryID  in request.");
+	}
+	const user = await DB.users.findOne({ sessions: { $in: [session] } });
+	if (user === null) {
+		return response
+			.status(403)
+			.send("Session does not exists. maybe you were logged out. ");
+	}
+	const userID = user.userID;
+
+	const deleteEvent = await DB.entries.deleteOne({ userID, entryID });
+	if (deleteEvent.deletedCount === 0) {
+		return response.status(403).send("You entered wrong entryID.");
+	} else if (!deleteEvent.acknowledged) {
+		return response.status(500).send("something went Wrong!");
+	}
+	return response.send(200);
 }
