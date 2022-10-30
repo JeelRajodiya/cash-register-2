@@ -57,17 +57,34 @@ async function GET(request: NextApiRequest, response: NextApiResponse) {
 	const validMonths = "1 2 3 4 5 6 7 8 9 10 11 12";
 	if (filterTypeObj === "month" && validMonths.includes(filterDate)) {
 		const entries = await DB.entries
-			.find({
-				userID,
-				$expr: { $eq: [{ $month: "$date" }, parseInt(filterDate)] },
-			})
+			.find(
+				{
+					userID,
+					$expr: {
+						$eq: [{ $month: "$date" }, parseInt(filterDate)],
+					},
+				},
+				{ projection: { amount: 1, date: 1, _id: 0 } }
+			)
+			.toArray();
+		return response.status(200).send(entries);
+	} else if (filterTypeObj === "year") {
+		const entries = await DB.entries
+			.find(
+				{
+					userID,
+					$expr: {
+						$eq: [{ $year: "$date" }, parseInt(filterDate)],
+					},
+				},
+				{ projection: { amount: 1, date: 1, _id: 0 } }
+			)
+			.toArray();
+		return response.status(200).send(entries);
+	} else {
+		const entries = await DB.entries
+			.find({ userID }, { projection: { amount: 1, date: 1, _id: 0 } })
 			.toArray();
 		return response.status(200).send(entries);
 	}
-	// const entries = await DB.entries
-	// 	.find({ userID: userID, date: { $expr: { $eq: [{ $month: } ]} } })
-	// 	.toArray();
-
-	// db.customer.find({ "$expr": { "$eq": [{ "$month": "$bday" }, 9] } })
-	return response.status(200).send(entries);
 }
