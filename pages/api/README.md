@@ -131,7 +131,8 @@
 ```
 {
     session:string;
-    filterDate:Date
+    filterDate:Date;
+    filterType:"month" | "year" | "all";
     
 }
 ```
