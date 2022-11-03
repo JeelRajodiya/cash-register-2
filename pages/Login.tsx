@@ -11,7 +11,6 @@ function performLogin(router: NextRouter) {
 
 export default function Login() {
 	const router = useRouter();
-	beautiful;
 	return (
 		<div className={styles.wrapper}>
 			<h2>Login to Your Account</h2>
