@@ -19,18 +19,21 @@
 }
 .inputField {
 	background-color: black;
-	border: 1px solid rgba(255, 255, 255, 0.14);
+	border: 1px solid rgba(255, 255, 255, 0.45);
 	outline: none;
 	color: #fff;
 	padding: 3mm 4mm;
 	border-radius: 2mm;
 	margin: 2mm 0;
 	transition: border-color 200ms ease-in;
+	transition: padding 150ms ease-in;
 	width: 100%;
 }
 
 .inputField:focus {
-	border: 1px solid rgba(255, 255, 255, 0.515);
+	border: 1px solid rgba(255, 255, 255, 0.715);
+	padding: 4mm;
+	/* font-size: 1.1em; */
 }
 .label {
 	color: #fff;
