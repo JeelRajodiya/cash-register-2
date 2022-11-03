@@ -1,12 +1,8 @@
-import type { NextPage } from 'next'
-import Layout from './layout'
+import type { NextPage } from "next";
+import Layout from "../components/Layout";
 
 const Home: NextPage = () => {
-  return (
-    <Layout>
-    Hi
-    </Layout>
-  )
-}
+	return <div style={{ height: "100%" }}>Home</div>;
+};
 
-export default Home
+export default Home;
