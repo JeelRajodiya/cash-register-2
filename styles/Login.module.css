@@ -1,0 +1,38 @@
+.loginPage {
+	color: wheat;
+	padding: 2mm;
+	width: 100%;
+	display: flex;
+	/* justify-content: center; */
+	/* align-items: center; */
+	flex-direction: column;
+	max-width: 15cm;
+}
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	/* justify-content: space-between; */
+	height: 100%;
+	padding: 2mm;
+}
+.inputField {
+	background-color: black;
+	border: 1px solid rgba(255, 255, 255, 0.14);
+	outline: none;
+	color: #fff;
+	padding: 3mm 4mm;
+	border-radius: 2mm;
+	margin: 2mm 0;
+	transition: border-color 200ms ease-in;
+	width: 100%;
+}
+
+.inputField:focus {
+	border: 1px solid rgba(255, 255, 255, 0.515);
+}
+.label {
+	color: #fff;
+	margin-top: 2mm;
+}
