@@ -7,11 +7,11 @@ const Handler: NextPage = () => {
 	const router = useRouter();
 	useEffect(() => {
 		const session = getCookie("session")?.toString();
-		if (session === undefined) {
-			router.push("/Login");
-		} else {
-			router.push("/Home");
-		}
+		// if (session === undefined) {
+		// router.push("/Login");
+		// } else {
+		router.push("/Home");
+		// }
 	});
 	return <Layout>Starting ...</Layout>;
 };
