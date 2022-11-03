@@ -15,9 +15,9 @@ export default function Layout({ children }: child) {
 
 	useEffect(() => {
 		const session = getCookie("session")?.toString();
-		// if (session === undefined) {
-		// router.push("/Login");
-		// }
+		if (session === undefined) {
+		router.push("/Login");
+		}
 	});
 
 	return (
