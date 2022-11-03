@@ -37,11 +37,12 @@
 	margin-top: 2mm;
 }
 .changeWindowPrompt {
-	color: rgba(255, 255, 255, 0.686);
+	color: rgba(255, 255, 255, 0.7);
 	margin-top: 2mm;
 	font-size: 1.2rem;
 }
 
 .changeWindowLink {
-	color: rgb(255, 115, 0);
+	color: orange;
+	font-weight: 500;
 }
