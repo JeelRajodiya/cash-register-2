@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Navbar() {
 	return (
 		<nav className={styles.navbar}>
-			<Link href="/" className={styles.listItem}>
+			<Link href="/Home" className={styles.listItem}>
 				Home
 			</Link>
 			<Link href="/Search" className={styles.listItem}>

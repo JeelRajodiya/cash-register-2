@@ -1,3 +1,9 @@
+import Layout from "../components/Layout";
+
 export default function Search() {
-	return <div style={{ height: "100%" }}>Search</div>;
+	return (
+		<Layout>
+			<div style={{ height: "100%" }}>Search</div>
+		</Layout>
+	);
 }
