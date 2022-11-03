@@ -3,6 +3,7 @@ import { NextRouter, useRouter } from "next/router";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import styles from "../styles/Login.module.css";
+import Link from "next/link";
 function performLogin(router: NextRouter) {
 	// setCookie("session", "true");
 	// router.push("/");
@@ -10,8 +11,10 @@ function performLogin(router: NextRouter) {
 
 export default function Login() {
 	const router = useRouter();
+	beautiful;
 	return (
 		<div className={styles.wrapper}>
+			<h2>Login to Your Account</h2>
 			<div className={styles.loginPage}>
 				<div className={styles.label}>Email</div>
 				<input
@@ -27,15 +30,16 @@ export default function Login() {
 				<Button
 					variant="contained"
 					onClick={() => performLogin(router)}
-					sx={{
-						display: "flex",
-						alignSelf: "end",
-						width: "2cm",
-						backgroundColor: "#3f51b5",
-					}}
+					sx={{ marginTop: "1rem" }}
 				>
 					Login
 				</Button>
+				<div className={styles.changeWindowPrompt}>
+					Already have an account?{" "}
+					<u className={styles.changeWindowLink}>
+						<Link href="/Register">Register</Link>
+					</u>
+				</div>
 			</div>
 		</div>
 	);

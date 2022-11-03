@@ -1,5 +1,5 @@
 .loginPage {
-	color: wheat;
+	color: white;
 	padding: 2mm;
 	width: 100%;
 	display: flex;
@@ -35,4 +35,13 @@
 .label {
 	color: #fff;
 	margin-top: 2mm;
+}
+.changeWindowPrompt {
+	color: rgba(255, 255, 255, 0.686);
+	margin-top: 2mm;
+	font-size: 1.2rem;
+}
+
+.changeWindowLink {
+	color: rgb(255, 115, 0);
 }
