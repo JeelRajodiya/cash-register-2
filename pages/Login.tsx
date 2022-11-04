@@ -32,7 +32,7 @@ export default function Login() {
 				<div className={styles.label}>Password</div>
 				<input
 					type="password"
-					placeholder="chad loves 69"
+					placeholder="chad loves 699"
 					className={styles.inputField}
 				/>
 				<Button
