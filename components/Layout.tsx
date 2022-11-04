@@ -1,9 +1,10 @@
 import Head from "next/head";
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import styles from "../styles/Layout.module.css";
 import { useRouter } from "next/router";
 import { getCookie } from "cookies-next";
+import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 
 interface child {
 	children: ReactNode;
@@ -19,6 +20,7 @@ export default function Layout({ children }: child) {
 			router.push("/Login");
 		}
 	});
+	const [value, setValue] = useState(0);
 
 	return (
 		<main style={{ height: "100%" }}>
