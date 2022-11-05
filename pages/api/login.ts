@@ -31,7 +31,7 @@ export default function handler(
 }
 
 async function POST(request: NextApiRequest, response: NextApiResponse) {
-	console.time("POST");
+	// console.time("POST");
 	const body = request.body;
 	const [email, password] = [body.email, body.password];
 	if (email === undefined || password === undefined) {
@@ -58,7 +58,7 @@ async function POST(request: NextApiRequest, response: NextApiResponse) {
 	if (!updateEvent) {
 		return response.status(500).send("something went wrong.");
 	}
-	console.timeEnd("POST");
+	// console.timeEnd("POST");
 
 	return response.json({ session: newSession });
 }
@@ -86,4 +86,16 @@ async function DELETE(request: NextApiRequest, response: NextApiResponse) {
 	}
 
 	return response.send(200);
+}
+
+async function PATCH(request: NextApiRequest, response: NextApiResponse) {
+	const body = request.body;
+	const session = body.session;
+	const isLoggedIn =
+		(await DB.users.count({ sessions: { $eq: session } })) === 1;
+	if (!isLoggedIn) {
+		return response.status(403).send("Session does not exists.");
+	} else {
+		return response.status(200).send("Session exists.");
+	}
 }

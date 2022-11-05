@@ -5,9 +5,5 @@ interface Props {
 	type: errorType;
 }
 export default function showAlert(props: Props) {
-	return (
-		<Alert severity={props.type}>
-			<strong>Oh no!</strong> {props.message}
-		</Alert>
-	);
+	return <Alert severity={props.type}>{props.message} </Alert>;
 }

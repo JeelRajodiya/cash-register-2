@@ -1,4 +1,3 @@
-import { setCookie } from "cookies-next";
 import { NextRouter, useRouter } from "next/router";
 import Button from "@mui/material/Button";
 import styles from "../styles/Login.module.css";
@@ -6,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import type { errorType } from "../components/ShowAlert";
 import ShowAlert from "../components/ShowAlert";
+import { setCookie } from "cookies-next";
 
 export default function Register() {
 	const router = useRouter();
@@ -15,7 +15,7 @@ export default function Register() {
 	const [showAlert, setShowAlert] = useState(false);
 	const [alertMessage, setAlertMessage] = useState("");
 	const [alertType, setAlertType] = useState<errorType>("error");
-	function performRegister(
+	async function performRegister(
 		router: NextRouter,
 		email: string,
 		password: string,
@@ -27,10 +27,35 @@ export default function Register() {
 			setAlertType("error");
 			setTimeout(() => {
 				setShowAlert(false);
-			}, 3000);
+			}, 5000);
 		}
-		// setCookie("session", "true");
-		// router.push("/");
+		const response = await fetch("/api/signup", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				email: email,
+				password: password,
+			}),
+		});
+		let serverResponse: any;
+
+		const status = response.status;
+		if (status === 200) {
+			serverResponse = await response.json();
+			setCookie("session", serverResponse.session);
+			setCookie("email", email);
+			router.push("/Home");
+		} else {
+			serverResponse = await response.text();
+			setShowAlert(true);
+			setAlertMessage(`${status} : ${serverResponse}`);
+			setAlertType("error");
+			setTimeout(() => {
+				setShowAlert(false);
+			}, 5000);
+		}
 	}
 
 	return (
