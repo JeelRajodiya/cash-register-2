@@ -10,6 +10,7 @@ export default function handler(
 	const methodMap = {
 		POST,
 		DELETE,
+		PATCH,
 	};
 	if (
 		request.method !== undefined &&
