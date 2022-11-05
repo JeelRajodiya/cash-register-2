@@ -1,23 +1,22 @@
-.navbar{
-    background-color: #000;
-    color: #fff;
-    display: flex;
-    /* justify-content: space-around; */
+.navbar {
+	background-color: #000;
+	color: #fff;
+	display: flex;
+	/* justify-content: space-around; */
 }
-.listItem{
-    display: flex;
-list-style: none;
-padding: 0.8rem 35px;
-width: 100%;
-justify-content: space-around;
-border: 1px solid rgba(255, 255, 255, 0.14);
-border-radius: 1mm;
-transition: 200ms background-color ease-in;
-transition: 200ms color ease-in;
-    /* padding: 5mm; */
-
+.listItem {
+	display: flex;
+	list-style: none;
+	padding: 1rem 1.5em;
+	width: 100%;
+	justify-content: space-around;
+	border: 1px solid rgba(255, 255, 255, 0.14);
+	border-radius: 1mm;
+	transition: 200ms background-color ease-in;
+	transition: 200ms color ease-in;
+	/* padding: 5mm; */
 }
-.listItem:hover{
-    background-color: #fff;
-    color: #000;
+.listItem:hover {
+	background-color: #fff;
+	color: #000;
 }

@@ -1,8 +1,16 @@
-.container{
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    justify-content: space-between;
-    /* max-width: 15cm;  */
-    align-items: center;
+.container {
+	display: flex;
+	height: 100%;
+	width: 80%;
+	flex-direction: column;
+	justify-content: space-between;
+	max-width: 15cm;
+	align-items: center;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
 }

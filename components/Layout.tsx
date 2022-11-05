@@ -45,7 +45,7 @@ export default function Layout({ children }: child) {
 	const [value, setValue] = useState(0);
 
 	return (
-		<main style={{ height: "100%" }}>
+		<main style={{ height: "100%" }} className={styles.wrapper}>
 			<Head>
 				<title>Cash Register</title>
 				<meta
