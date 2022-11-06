@@ -2,6 +2,7 @@ import Layout from "../components/Layout";
 import { getCookie, setCookie } from "cookies-next";
 import { Button } from "@mui/material";
 import { NextRouter, useRouter } from "next/router";
+import styles from "../styles/Account.module.css";
 
 async function performLogout(router: NextRouter) {
 	const response = await fetch("/api/login", {
@@ -23,7 +24,7 @@ export default function Search() {
 	const router = useRouter();
 	return (
 		<Layout>
-			<div style={{ height: "100%", width: "100%" }}>
+			<div className={styles.container}>
 				<h3>
 					Logged in As <code>{getCookie("email")?.toString()}</code>
 				</h3>

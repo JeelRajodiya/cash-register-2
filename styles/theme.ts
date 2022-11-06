@@ -9,5 +9,11 @@ export const theme = createTheme({
 		secondary: {
 			main: "#fff",
 		},
+		success: {
+			main: "#00ff00",
+		},
+		error: {
+			main: "#ff0000",
+		},
 	},
 });

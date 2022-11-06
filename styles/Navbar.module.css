@@ -11,10 +11,16 @@
 	width: 100%;
 	justify-content: space-around;
 	border: 1px solid rgba(255, 255, 255, 0.14);
-	border-radius: 1mm;
+	/* border-radius: 1mm; */
 	transition: 200ms background-color ease-in;
 	transition: 200ms color ease-in;
 	/* padding: 5mm; */
+}
+.listItem:nth-child(1) {
+	border-left: none;
+}
+.listItem:nth-last-child(1) {
+	border-right: none;
 }
 .listItem:hover {
 	background-color: #fff;
