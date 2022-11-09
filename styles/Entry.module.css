@@ -1,3 +1,23 @@
 .entryViewer {
 	padding: 0.2em;
 }
+
+.entryAmount {
+	padding: 0.5em;
+}
+
+.entryDescription {
+	padding: 0.5em;
+}
+
+.entryDate {
+	padding: 0.5em;
+	font-family: monospace;
+}
+.green {
+	color: rgb(23, 212, 23);
+}
+
+.red {
+	color: red;
+}

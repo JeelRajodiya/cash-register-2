@@ -41,4 +41,13 @@
 
 .recentEntriesTitle {
 	align-self: center;
+	font-size: 1.2em;
+	text-transform: capitalize;
+	font-weight: 500;
+	/* text-decoration: underline; */
+	margin-bottom: 1em;
+}
+
+.entriesWrapper {
+	padding: 0 1em;
 }

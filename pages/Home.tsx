@@ -11,7 +11,7 @@ import type { Entry as EntryProps } from "../pages/api/util/types";
 async function fetchRecent(setData: Dispatch<any>) {
 	const session = getCookie("session");
 	const response = await fetch(
-		`/api/entry?session=${session}&&maxResults=10`
+		`/api/entry?session=${session}&&maxResults=15`
 	);
 	const data = await response.json();
 	setData(data);
@@ -50,9 +50,11 @@ export default function Home() {
 			</div>
 			<div className={styles.recentEntriesWindow}>
 				<div className={styles.recentEntriesTitle}>Recent Entries</div>
-				{latestEntries.map((entry: EntryProps) => (
-					<Entry key={entry.entryID} {...entry} />
-				))}
+				<div className={styles.entriesWrapper}>
+					{latestEntries.map((entry: EntryProps) => (
+						<Entry key={entry.entryID} {...entry} />
+					))}
+				</div>
 			</div>
 		</Layout>
 	);
