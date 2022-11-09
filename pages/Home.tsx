@@ -1,7 +1,8 @@
 import { Button } from "@mui/material";
 import Layout from "../components/Layout";
 import styles from "../styles/Home.module.css";
-
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 export default function Home() {
 	return (
 		<Layout>
@@ -14,19 +15,19 @@ export default function Home() {
 				<div className={styles.inputButtonArea}>
 					<Button
 						className={styles.inputButton}
-						variant="contained"
+						variant="outlined"
 						color="success"
-						sx={{ margin: "0.5em" }}
+						sx={{ margin: "0.5em", fontSize: "1.5rem" }}
 					>
-						+
+						<AddRoundedIcon />
 					</Button>
 					<Button
-						sx={{ margin: "0.5em" }}
-						variant="contained"
+						sx={{ margin: "0.5em", fontSize: "1.5rem" }}
+						variant="outlined"
 						className={styles.inputButton}
 						color="error"
 					>
-						-
+						<RemoveRoundedIcon />
 					</Button>
 				</div>
 			</div>
