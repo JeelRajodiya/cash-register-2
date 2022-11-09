@@ -1,9 +1,13 @@
 .inputArea {
 	width: 100%;
-	height: 100%;
+	height: auto;
 	display: flex;
+	flex: 1;
 	flex-direction: column;
-	/* border: 1px solid white; */
+	background-color: rgba(255, 255, 255, 0.052);
+	margin: 1em;
+	padding: 0.5em;
+	border-radius: 5mm;
 }
 
 .inputLabel {
@@ -13,7 +17,7 @@
 
 .inputField {
 	padding: 1em;
-	margin: 0.5em;
+	margin: 0.5em 0;
 	background-color: black;
 	border: 1px solid rgba(255, 255, 255, 0.43);
 	border-radius: 0.5em;
@@ -23,4 +27,18 @@
 }
 .inputButtonArea {
 	display: flex;
+}
+.recentEntriesWindow {
+	/* border: 1px solid white; */
+	width: 100%;
+	flex: 1;
+	display: flex;
+	padding: 0.5em;
+	background-color: rgba(255, 255, 255, 0.052);
+	flex-direction: column;
+	border-radius: 5mm;
+}
+
+.recentEntriesTitle {
+	align-self: center;
 }
