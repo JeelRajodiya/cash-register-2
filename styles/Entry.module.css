@@ -2,8 +2,12 @@
 	padding: 0.2em;
 	display: flex;
 	width: 100%;
+	border-radius: 0.5em;
 	/* justify-content: space-between; */
 	border-top: 1px solid rgba(255, 255, 255, 0.121);
+}
+.entryViewer:hover {
+	background-color: rgba(255, 255, 255, 0.052);
 }
 .entryViewer > button {
 	/* align-self: flex-end; */
@@ -22,6 +26,7 @@
 
 .entryDate {
 	padding: 0.5em;
+	align-self: center;
 	font-family: monospace;
 }
 .green {

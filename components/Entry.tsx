@@ -16,7 +16,10 @@ async function deleteEntry(EntryID: string) {
 	console.log(data, EntryID, session);
 	return data;
 }
-export default function Entry(props: EntryProps) {
+interface EntryProps2 extends EntryProps {
+	setDataHash: Dispatch<number>;
+}
+export default function Entry(props: EntryProps2) {
 	const numberColor = props.amount > 0 ? styles.green : styles.red;
 	return (
 		<div className={styles.entryViewer}>

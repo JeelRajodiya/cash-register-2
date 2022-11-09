@@ -99,26 +99,21 @@ export default function Home() {
 				</div>
 			</div>
 			<div className={styles.recentEntriesWindow}>
-				{isLatestEntriesLoading ? (
-					<CircularProgress
-						style={{ alignSelf: "center" }}
-					></CircularProgress>
-				) : (
-					<>
-						<div className={styles.recentEntriesTitle}>
-							Recent Entries
-						</div>
-						<div className={styles.entriesWrapper}>
-							{latestEntries.map((entry: EntryProps) => (
-								<Entry
-									key={entry.entryID}
-									{...entry}
-									setDataHash={setDataHash}
-								/>
-							))}
-						</div>
-					</>
-				)}
+				<div className={styles.recentEntriesTitle}>
+					Recent Entries{" "}
+					{isLatestEntriesLoading && (
+						<CircularProgress size={15}></CircularProgress>
+					)}
+				</div>
+				<div className={styles.entriesWrapper}>
+					{latestEntries.map((entry: EntryProps) => (
+						<Entry
+							key={entry.entryID}
+							{...entry}
+							setDataHash={setDataHash}
+						/>
+					))}
+				</div>
 			</div>
 		</Layout>
 	);

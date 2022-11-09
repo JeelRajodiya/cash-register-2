@@ -17,10 +17,10 @@
 
 .inputField {
 	padding: 1em;
-	margin: 0.5em 0;
-	background-color: black;
+	margin: 0.5em;
+	background-color: rgba(0, 0, 0, 0.241);
 	border: 1px solid rgba(255, 255, 255, 0.43);
-	border-radius: 0.5em;
+	border-radius: 0.8em;
 }
 .inputButton {
 	width: 100%;
