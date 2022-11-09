@@ -7,30 +7,77 @@ import { getCookie } from "cookies-next";
 import { useState, useEffect, Dispatch } from "react";
 import Entry from "../components/Entry";
 import type { Entry as EntryProps } from "../pages/api/util/types";
+import CircularProgress from "@mui/material/CircularProgress";
 
-async function fetchRecent(setData: Dispatch<any>) {
+async function fetchRecent(
+	setData: Dispatch<any>,
+	setIsLatestEntriesLoading: Dispatch<boolean>
+) {
 	const session = getCookie("session");
+	setIsLatestEntriesLoading(true);
 	const response = await fetch(
 		`/api/entry?session=${session}&&maxResults=15`
 	);
 	const data = await response.json();
 	setData(data);
+	setIsLatestEntriesLoading(false);
 }
+async function postData(
+	amount: number,
+	description: string,
+	setDataHash: Dispatch<number>
+) {
+	const session = getCookie("session");
+	const response = await fetch("/api/entry", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			session,
+			amount,
+			description,
+		}),
+	});
+	const data = await response.text();
+	// console.log(data);
+	setDataHash(new Date().getTime());
+}
+
 export default function Home() {
 	const [latestEntries, setLatestEntries] = useState([]);
+	const [amount, setAmount] = useState<number | string>("");
+	const [description, setDescription] = useState("");
+	const [isLatestEntriesLoading, setIsLatestEntriesLoading] = useState(true);
+	const [dataHash, setDataHash] = useState(new Date().getTime());
+
 	useEffect(() => {
-		fetchRecent(setLatestEntries);
-	});
+		// console.log("sd");
+		fetchRecent(setLatestEntries, setIsLatestEntriesLoading);
+	}, [dataHash]);
+
 	return (
 		<Layout>
 			{/* <div style={{ height: "100%" }}>Home</div> */}
 			<div className={styles.inputArea}>
 				<div className={styles.inputLabel}>Amount</div>
-				<input className={styles.inputField}></input>
+				<input
+					className={styles.inputField}
+					onChange={(e) => setAmount(Number(e.target.value))}
+					value={amount}
+					type="number"
+				></input>
 				<div className={styles.inputLabel}>Description</div>
-				<input className={styles.inputField}></input>
+				<input
+					className={styles.inputField}
+					value={description}
+					onChange={(e) => setDescription(e.target.value)}
+				></input>
 				<div className={styles.inputButtonArea}>
 					<Button
+						onClick={() =>
+							postData(amount as number, description, setDataHash)
+						}
 						className={styles.inputButton}
 						variant="outlined"
 						color="success"
@@ -39,6 +86,9 @@ export default function Home() {
 						<AddRoundedIcon />
 					</Button>
 					<Button
+						onClick={() =>
+							postData(-amount, description, setDataHash)
+						}
 						sx={{ margin: "0.5em", fontSize: "1.5rem" }}
 						variant="outlined"
 						className={styles.inputButton}
@@ -49,12 +99,26 @@ export default function Home() {
 				</div>
 			</div>
 			<div className={styles.recentEntriesWindow}>
-				<div className={styles.recentEntriesTitle}>Recent Entries</div>
-				<div className={styles.entriesWrapper}>
-					{latestEntries.map((entry: EntryProps) => (
-						<Entry key={entry.entryID} {...entry} />
-					))}
-				</div>
+				{isLatestEntriesLoading ? (
+					<CircularProgress
+						style={{ alignSelf: "center" }}
+					></CircularProgress>
+				) : (
+					<>
+						<div className={styles.recentEntriesTitle}>
+							Recent Entries
+						</div>
+						<div className={styles.entriesWrapper}>
+							{latestEntries.map((entry: EntryProps) => (
+								<Entry
+									key={entry.entryID}
+									{...entry}
+									setDataHash={setDataHash}
+								/>
+							))}
+						</div>
+					</>
+				)}
 			</div>
 		</Layout>
 	);

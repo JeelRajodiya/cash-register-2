@@ -1,7 +1,17 @@
 .entryViewer {
 	padding: 0.2em;
+	display: flex;
+	width: 100%;
+	/* justify-content: space-between; */
+	border-top: 1px solid rgba(255, 255, 255, 0.121);
 }
-
+.entryViewer > button {
+	/* align-self: flex-end; */
+	/* justify-self: end; */
+	align-self: flex-start;
+	justify-self: flex-end;
+	margin-left: auto;
+}
 .entryAmount {
 	padding: 0.5em;
 }

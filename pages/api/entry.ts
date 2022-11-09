@@ -101,9 +101,9 @@ async function GET(request: NextApiRequest, response: NextApiResponse) {
 }
 
 async function DELETE(request: NextApiRequest, response: NextApiResponse) {
-	const body = request.body;
-	const session = body.session;
-	const entryID = body.entryID;
+	// const body = request.body;
+	const session = request.query.session;
+	const entryID = request.query.entryID;
 
 	if (session === undefined || entryID === undefined) {
 		return response
