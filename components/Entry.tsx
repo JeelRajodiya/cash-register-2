@@ -1,7 +1,8 @@
 import type { Entry as EntryProps } from "../pages/api/util/types";
 import styles from "../styles/Entry.module.css";
 import { getCookie } from "cookies-next";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+// import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import { Button } from "@mui/material";
 import { Dispatch } from "react";
 async function deleteEntry(EntryID: string) {
@@ -33,12 +34,13 @@ export default function Entry(props: EntryProps2) {
 			<span className={styles.entryDescription}>{props.description}</span>
 			<Button
 				color="error"
+				size="large"
 				onClick={() => {
 					deleteEntry(props.entryID);
 					props.setDataHash(new Date().getTime());
 				}}
 			>
-				<DeleteForeverIcon />
+				<ClearRoundedIcon />
 			</Button>
 		</div>
 	);
