@@ -36,7 +36,7 @@ export default function Search() {
 			setIsResultsLoading,
 			setDataUpdateHash
 		);
-	}, []);
+	}, [query]);
 
 	return (
 		<Layout>
