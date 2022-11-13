@@ -11,7 +11,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 async function performSearch(
 	query: string,
 	setResults: Dispatch<any[]>,
-	setIsLatestEntriesLoading: Dispatch<boolean>
+	setIsLatestEntriesLoading: Dispatch<boolean>,
+	setDataUpdateHash: Dispatch<number>
 ) {
 	const session = getCookie("session");
 	setIsLatestEntriesLoading(true);
@@ -21,6 +22,7 @@ async function performSearch(
 	const data = await response.json();
 	setResults(data);
 	setIsLatestEntriesLoading(false);
+	setDataUpdateHash(new Date().getTime());
 }
 export default function Search() {
 	const [query, setQuery] = useState("");
@@ -28,8 +30,13 @@ export default function Search() {
 	const [dataUpdateHash, setDataUpdateHash] = useState(new Date().getTime());
 	const [isResultsLoading, setIsResultsLoading] = useState(false);
 	useEffect(() => {
-		performSearch(query, setResults, setIsResultsLoading);
-	}, [dataUpdateHash]);
+		performSearch(
+			query,
+			setResults,
+			setIsResultsLoading,
+			setDataUpdateHash
+		);
+	}, []);
 
 	return (
 		<Layout>
@@ -47,7 +54,8 @@ export default function Search() {
 							performSearch(
 								query,
 								setResults,
-								setIsResultsLoading
+								setIsResultsLoading,
+								setDataUpdateHash
 							)
 						}
 						// sx={{ borderRadius: "2em" }}
