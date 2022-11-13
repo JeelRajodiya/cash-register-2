@@ -38,8 +38,10 @@ async function performLogin(
 	let serverResponse: any;
 	if (status === 200) {
 		serverResponse = await response.json();
-		setCookie("session", serverResponse.session);
-		setCookie("email", email);
+		setCookie("session", serverResponse.session, {
+			maxAge: 60 * 60 * 24 * 365,
+		});
+		setCookie("email", email, { maxAge: 60 * 60 * 24 * 365 });
 		router.push("/Home");
 	} else {
 		serverResponse = await response.text();
