@@ -17,27 +17,26 @@ async function performSearch(
 	const session = getCookie("session");
 	setIsLatestEntriesLoading(true);
 	const response = await fetch(
-		`/api/search?queryText=${query}&&session=${session}`
+		`/api/search?queryText=${query}&&session=${session}&&maxResults=100`
 	);
 	const data = await response.json();
 	setResults(data);
 	setIsLatestEntriesLoading(false);
-	setDataUpdateHash(new Date().getTime());
+	// setDataUpdateHash(new Date().getTime());
 }
 export default function Search() {
 	const [query, setQuery] = useState("");
 	const [results, setResults] = useState<any[]>([]);
 	const [dataUpdateHash, setDataUpdateHash] = useState(new Date().getTime());
 	const [isResultsLoading, setIsResultsLoading] = useState(false);
-	// Do not enable it, it causes performance issues
-	// useEffect(() => {
-	// 	performSearch(
-	// 		query,
-	// 		setResults,
-	// 		setIsResultsLoading,
-	// 		setDataUpdateHash
-	// 	);
-	// }, [query]);
+	useEffect(() => {
+		performSearch(
+			query,
+			setResults,
+			setIsResultsLoading,
+			setDataUpdateHash
+		);
+	}, [query, dataUpdateHash]);
 
 	return (
 		<Layout>

@@ -5,13 +5,16 @@
 .searchBar {
 	margin: 1em 0;
 	display: flex;
-	background-color: #ffffff0b;
+	background-color: #0f0f0f;
 	border-radius: 0.5em;
+	position: sticky;
+	top: 1em;
 }
 
 .mainInput {
 	width: 100%;
-	background-color: transparent;
+	background-color: #0f0f0f;
+
 	border: 1px solid rgba(255, 255, 255, 0.044);
 	outline: none;
 	padding: 0.5em 1em;
@@ -25,3 +28,4 @@
 .mainInput:focus-within {
 	border: 1px solid rgba(255, 255, 255, 0.2);
 }
+transp
