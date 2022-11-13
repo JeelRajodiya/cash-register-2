@@ -21,6 +21,10 @@ interface EntryProps2 extends EntryProps {
 	setDataUpdateHash: Dispatch<number>;
 }
 export default function Entry(props: EntryProps2) {
+	const formatter = new Intl.NumberFormat("en-US", {
+		style: "currency",
+		currency: "INR",
+	});
 	const numberColor = props.amount > 0 ? styles.green : styles.red;
 	return (
 		<div className={styles.entryViewer}>
@@ -29,7 +33,7 @@ export default function Entry(props: EntryProps2) {
 			</span>
 
 			<span className={[styles.entryAmount, numberColor].join(" ")}>
-				{props.amount}
+				{formatter.format(props.amount)}
 			</span>
 			<span className={styles.entryDescription}>{props.description}</span>
 			<Button
