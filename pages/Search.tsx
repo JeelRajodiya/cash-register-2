@@ -29,14 +29,15 @@ export default function Search() {
 	const [results, setResults] = useState<any[]>([]);
 	const [dataUpdateHash, setDataUpdateHash] = useState(new Date().getTime());
 	const [isResultsLoading, setIsResultsLoading] = useState(false);
-	useEffect(() => {
-		performSearch(
-			query,
-			setResults,
-			setIsResultsLoading,
-			setDataUpdateHash
-		);
-	}, [query]);
+	// Do not enable it, it causes performance issues
+	// useEffect(() => {
+	// 	performSearch(
+	// 		query,
+	// 		setResults,
+	// 		setIsResultsLoading,
+	// 		setDataUpdateHash
+	// 	);
+	// }, [query]);
 
 	return (
 		<Layout>
