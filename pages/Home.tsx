@@ -49,12 +49,12 @@ export default function Home() {
 	const [amount, setAmount] = useState<number | string>("");
 	const [description, setDescription] = useState("");
 	const [isLatestEntriesLoading, setIsLatestEntriesLoading] = useState(true);
-	const [dataHash, setDataHash] = useState(new Date().getTime());
+	const [dataUpdateHash, setDataUpdateHash] = useState(new Date().getTime());
 
 	useEffect(() => {
 		// console.log("sd");
 		fetchRecent(setLatestEntries, setIsLatestEntriesLoading);
-	}, [dataHash]);
+	}, [dataUpdateHash]);
 
 	return (
 		<Layout>
@@ -76,7 +76,11 @@ export default function Home() {
 				<div className={styles.inputButtonArea}>
 					<Button
 						onClick={() =>
-							postData(amount as number, description, setDataHash)
+							postData(
+								amount as number,
+								description,
+								setDataUpdateHash
+							)
 						}
 						className={styles.inputButton}
 						variant="outlined"
@@ -87,7 +91,7 @@ export default function Home() {
 					</Button>
 					<Button
 						onClick={() =>
-							postData(-amount, description, setDataHash)
+							postData(-amount, description, setDataUpdateHash)
 						}
 						sx={{ margin: "0.5em", fontSize: "1.5rem" }}
 						variant="outlined"
@@ -110,7 +114,7 @@ export default function Home() {
 						<Entry
 							key={entry.entryID}
 							{...entry}
-							setDataHash={setDataHash}
+							setDataUpdateHash={setDataUpdateHash}
 						/>
 					))}
 				</div>

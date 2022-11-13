@@ -18,7 +18,7 @@ async function deleteEntry(EntryID: string) {
 	return data;
 }
 interface EntryProps2 extends EntryProps {
-	setDataHash: Dispatch<number>;
+	setDataUpdateHash: Dispatch<number>;
 }
 export default function Entry(props: EntryProps2) {
 	const numberColor = props.amount > 0 ? styles.green : styles.red;
@@ -37,7 +37,7 @@ export default function Entry(props: EntryProps2) {
 				size="large"
 				onClick={() => {
 					deleteEntry(props.entryID);
-					props.setDataHash(new Date().getTime());
+					props.setDataUpdateHash(new Date().getTime());
 				}}
 			>
 				<ClearRoundedIcon />
