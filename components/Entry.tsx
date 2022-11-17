@@ -29,7 +29,13 @@ export default function Entry(props: EntryProps2) {
 	return (
 		<div className={styles.entryViewer}>
 			<span className={styles.entryDate}>
-				{new Date(props.date).toDateString()}
+				{new Date(props.date).toLocaleString("en-IN", {
+					year: "numeric",
+					month: "long",
+					day: "numeric",
+					minute: "numeric",
+					hour: "numeric",
+				})}
 			</span>
 
 			<span className={[styles.entryAmount, numberColor].join(" ")}>
