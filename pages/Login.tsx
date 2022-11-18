@@ -78,7 +78,7 @@ export default function Login() {
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 					type="password"
-					placeholder="chad loves 699"
+					placeholder="chad loves 69"
 					className={styles.inputField}
 				/>
 				{showAlert && (
