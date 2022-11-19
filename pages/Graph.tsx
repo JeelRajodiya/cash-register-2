@@ -1,10 +1,12 @@
 import Layout from "../components/Layout";
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import { useEffect } from "react";
 import { getCookie } from "cookies-next";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 	ssr: false,
 });
+
 async function fetchGraphData(
 	setData: (value: any) => void,
 	filterType: string,
@@ -14,42 +16,38 @@ async function fetchGraphData(
 	const response = await fetch(
 		`/api/graph?session=${session}&&filterType=${filterType}&&filterDate=${filterDate}`
 	);
-	const data = await response.json();
-	setData(data);
+	const data: any[] = await response.json();
+
+	setData((x: any) => {
+		const newData = {
+			...x,
+			series: [
+				{
+					name: "Series 1",
+					data: data.map((e) => Number(e.amount)),
+				},
+			],
+		};
+		// console.log(newData.series.data.length);
+		return newData;
+	});
 	console.log(data);
 }
 
 export default function Search() {
 	const [chartData, setChartData] = useState<any>();
-
+	useEffect(() => {
+		fetchGraphData(setChartProps, "month", "2021-08");
+	}, []);
 	const [chartProps, setChartProps] = useState({
 		options: {
-			// chart: {
-			// 	id: "chart2",
-			// 	type: "area",
-			// 	height: 230,
-			// 	foreColor: "#ccc",
-			// 	toolbar: {
-			// 		autoSelected: "pan",
-			// 		show: false,
-			// 	},
-			// },
-			// colors: ["#00BAEC"],
-			// stroke: {
-			// 	width: 3,
-			// },
-			grid: {
-				borderColor: "#555",
-				clipMarkers: false,
-				yaxis: {
-					lines: {
-						show: false,
-					},
-				},
+			colors: ["#00BAEC"],
+			stroke: {
+				width: 1,
 			},
-			// dataLabels: {
-			// 	enabled: false,
-			// },
+			dataLabels: {
+				enabled: false,
+			},
 			fill: {
 				gradient: {
 					enabled: true,
