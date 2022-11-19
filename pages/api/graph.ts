@@ -43,6 +43,12 @@ async function GET(request: NextApiRequest, response: NextApiResponse) {
 
 	const filterTypeObj = filterType as FilterType;
 
+	if (filterTypeObj === "month" && filterDate.split("-").length !== 2) {
+		return response
+			.status(400)
+			.send("Please add filterDate in format MM-YYYY.");
+	}
+	// if the filterType is not in all , year, month
 	if (!["all", "month", "year"].includes(filterTypeObj)) {
 		return response.status(400).send("Please add  filterType in request.");
 	}
@@ -61,7 +67,20 @@ async function GET(request: NextApiRequest, response: NextApiResponse) {
 				{
 					userID,
 					$expr: {
-						$eq: [{ $month: "$date" }, parseInt(filterDate)],
+						$and: [
+							{
+								$eq: [
+									{ $month: "$date" },
+									parseInt(filterDate.split("-")[0]),
+								],
+							},
+							{
+								$eq: [
+									{ $year: "$date" },
+									parseInt(filterDate.split("-")[1]),
+								],
+							},
+						],
 					},
 				},
 				{ projection: { amount: 1, date: 1, _id: 0 } }

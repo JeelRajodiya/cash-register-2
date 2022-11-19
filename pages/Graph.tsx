@@ -1,11 +1,27 @@
 import Layout from "../components/Layout";
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import { getCookie } from "cookies-next";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 	ssr: false,
 });
+async function fetchGraphData(
+	setData: (value: any) => void,
+	filterType: string,
+	filterDate: string
+) {
+	const session = getCookie("session");
+	const response = await fetch(
+		`/api/graph?session=${session}&&filterType=${filterType}&&filterDate=${filterDate}`
+	);
+	const data = await response.json();
+	setData(data);
+	console.log(data);
+}
 
 export default function Search() {
+	const [chartData, setChartData] = useState<any>();
+
 	const [chartProps, setChartProps] = useState({
 		options: {
 			// chart: {
