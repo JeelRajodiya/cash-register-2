@@ -35,10 +35,23 @@ async function GET(request: NextApiRequest, response: NextApiResponse) {
 	}
 	const filterDate = request.query.filterDate as string;
 	const filterType = request.query.filterType as string;
-	if (filterDate === undefined || filterType === undefined) {
+	// if filterType is 'all' we don't have to check whether filterDate is provided or not
+	if (
+		filterType === undefined ||
+		(filterDate === undefined && filterType !== "all")
+	) {
+		console.log(filterType !== "all");
 		return response
 			.status(400)
 			.send("Please add  filterDate and filterType in request.");
+	} else if (
+		filterType !== "all" &&
+		filterType !== "month" &&
+		filterType !== "year"
+	) {
+		return response
+			.status(400)
+			.send("filterType should be one of 'all', 'month', 'year'.");
 	}
 
 	const filterTypeObj = filterType as FilterType;
@@ -108,8 +121,8 @@ async function GET(request: NextApiRequest, response: NextApiResponse) {
 		}
 		return response.status(200).send(conciseData);
 	} else if (filterTypeObj === "year") {
-		let conciseData: { [year: number]: number } = {};
-		let tempConciseData: { [year: number]: number[] } = {};
+		let conciseData: { [month: number]: number } = {};
+		let tempConciseData: { [month: number]: number[] } = {};
 
 		const entries = await DB.entries
 			.find(
@@ -140,8 +153,26 @@ async function GET(request: NextApiRequest, response: NextApiResponse) {
 		return response.status(200).send(conciseData);
 	} else {
 		const entries = await DB.entries
+
 			.find({ userID }, { projection: { amount: 1, date: 1, _id: 0 } })
 			.toArray();
-		return response.status(200).send(entries);
+		let conciseData: { [year: number]: number } = {};
+		let tempConciseData: { [year: number]: number[] } = {};
+		for (const entry of entries) {
+			const year = entry.date.getFullYear();
+
+			if (tempConciseData[year] === undefined) {
+				tempConciseData[year] = [];
+			}
+			tempConciseData[year].push(entry.amount);
+		}
+		for (const year in tempConciseData) {
+			conciseData[year] = tempConciseData[year].reduce(
+				(a, b) => a + b,
+				0
+			);
+		}
+
+		return response.status(200).send(conciseData);
 	}
 }
