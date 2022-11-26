@@ -61,7 +61,7 @@ async function GET(request: NextApiRequest, response: NextApiResponse) {
 			.send("Session does not exists. maybe you were logged out. ");
 	}
 	const userID = user.userID;
-	const validMonths = "1 2 3 4 5 6 7 08 9 10 11 12";
+	const validMonths = "1 2 3 4 5 6 7 8 9 10 11 12";
 	if (
 		filterTypeObj === "month" &&
 		validMonths.includes(filterDate.split("-")[0])
