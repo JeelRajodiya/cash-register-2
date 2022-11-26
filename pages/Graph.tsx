@@ -17,6 +17,14 @@ async function fetchGraphData(
 		`/api/graph?session=${session}&&filterType=${filterType}&&filterDate=${filterDate}`
 	);
 	const data: any[] = await response.json();
+	let graphData: any[] = [];
+	// console.log(data);
+	for (let i of Object.keys(data)) {
+		graphData.push({
+			x: i,
+			y: data[i],
+		});
+	}
 
 	setData((x: any) => {
 		const newData = {
@@ -24,14 +32,14 @@ async function fetchGraphData(
 			series: [
 				{
 					name: "Series 1",
-					data: data.map((e) => Number(e.amount)),
+					data: graphData,
 				},
 			],
 		};
 		// console.log(newData.series.data.length);
 		return newData;
 	});
-	console.log(data);
+	// console.log(data);
 }
 
 export default function Search() {

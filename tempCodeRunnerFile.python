@@ -1,0 +1,12 @@
+income=int(input("Enter your income:"))
+if(income<=500000):
+  print("The amount of tax to be paid is 0")
+  print("the amount after payng tax is:",income)
+elif(500000<income<=1000000):
+  tax=(income-500000)*0.1
+  print("The amount of tax to be paid is:",tax)
+  print("the amount after payng tax is:",income-tax)
+else:
+  tax=50000+((income-1000000)*0.2)
+  print("The amount of tax to be paid is:",tax)
+  print("the amount after payng tax is:",income-tax)
