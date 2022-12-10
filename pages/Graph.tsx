@@ -42,10 +42,15 @@ async function fetchGraphData(
 	// console.log(data);
 }
 
-export default function Search() {
-	const [chartData, setChartData] = useState<any>();
+export default function Graph() {
+	// const [chartData, setChartData] = useState<any>();
+	const nowTime = new Date();
+	const [activeChart, setActiveChart] = useState({
+		type: "month",
+		date: `${nowTime.getMonth() + 1}-${nowTime.getFullYear()}`,
+	});
 	useEffect(() => {
-		fetchGraphData(setChartProps, "month", "2021-08");
+		fetchGraphData(setChartProps, activeChart.type, activeChart.date);
 	}, []);
 	const [chartProps, setChartProps] = useState({
 		options: {
@@ -103,6 +108,10 @@ export default function Search() {
 					width={500}
 				/>
 			</div>
+			<select style={{ minWidth: "minContent" }}>
+				<option value="this month">This Month</option>
+				<option value="this year">This Year</option>
+			</select>
 		</Layout>
 	);
 }
