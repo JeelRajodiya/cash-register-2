@@ -45,6 +45,7 @@ async function fetchGraphData(
 export default function Graph() {
 	// const [chartData, setChartData] = useState<any>();
 	const nowTime = new Date();
+
 	const [activeChart, setActiveChart] = useState({
 		type: "month",
 		date: `${nowTime.getMonth() + 1}-${nowTime.getFullYear()}`,
@@ -108,9 +109,44 @@ export default function Graph() {
 					width={500}
 				/>
 			</div>
-			<select style={{ minWidth: "minContent" }}>
+			<select
+				style={{ minWidth: "minContent" }}
+				onChange={(e) => {
+					let filterDate = "";
+					let filterType = "";
+					if (e.target.value === "this month") {
+						filterType = "month";
+						filterDate = `${
+							nowTime.getMonth() + 1
+						}-${nowTime.getFullYear()}`;
+					} else if (e.target.value === "this year") {
+						filterDate = `${nowTime.getFullYear()}`;
+						filterType = "year";
+					} else if (e.target.value === "last month") {
+						filterDate = `${
+							nowTime.getMonth() === 0 ? 12 : nowTime.getMonth()
+						}-${nowTime.getFullYear()}`;
+						filterType = "month";
+					} else if (e.target.value === "last year") {
+						filterDate = `${nowTime.getFullYear() - 1}`;
+						filterType = "year";
+					} else if (e.target.value === "all") {
+						filterType = "all";
+					}
+					console.log(filterDate, filterType);
+					setActiveChart({
+						type: filterType,
+						date: filterDate,
+					});
+					console.log(activeChart, e.target.value);
+					fetchGraphData(setChartProps, filterType, filterDate);
+				}}
+			>
 				<option value="this month">This Month</option>
 				<option value="this year">This Year</option>
+				<option value="last month">Last Month</option>
+				<option value="last year">Last Year</option>
+				<option value="all">All Time</option>
 			</select>
 		</Layout>
 	);
