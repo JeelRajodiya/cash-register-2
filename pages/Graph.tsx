@@ -52,7 +52,7 @@ export default function Graph() {
 	});
 	useEffect(() => {
 		fetchGraphData(setChartProps, activeChart.type, activeChart.date);
-	}, []);
+	}, [activeChart.type, activeChart.date]);
 	const [chartProps, setChartProps] = useState({
 		options: {
 			colors: ["#00BAEC"],
@@ -138,8 +138,8 @@ export default function Graph() {
 						type: filterType,
 						date: filterDate,
 					});
-					console.log(activeChart, e.target.value);
-					fetchGraphData(setChartProps, filterType, filterDate);
+					// console.log(activeChart, e.target.value);
+					// fetchGraphData(setChartProps, filterType, filterDate);
 				}}
 			>
 				<option value="this month">This Month</option>
