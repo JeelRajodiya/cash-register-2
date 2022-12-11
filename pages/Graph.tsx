@@ -16,13 +16,13 @@ async function fetchGraphData(
 	const response = await fetch(
 		`/api/graph?session=${session}&&filterType=${filterType}&&filterDate=${filterDate}`
 	);
-	const data: any[] = await response.json();
+	const data: { [month: number]: number } = await response.json();
 	let graphData: any[] = [];
-	// console.log(data);
 	for (let i of Object.keys(data)) {
+		console.log(i);
 		graphData.push({
 			x: i,
-			y: data[i],
+			y: data[Number(i)],
 		});
 	}
 
