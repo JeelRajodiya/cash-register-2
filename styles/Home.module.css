@@ -19,9 +19,18 @@
 	padding: 1em;
 	margin: 0.5em;
 	background-color: rgba(0, 0, 0, 0.241);
-	border: 1px solid rgba(255, 255, 255, 0.43);
-	border-radius: 0.8em;
+	border: 1px solid rgba(255, 255, 255, 0.262);
+	border-radius: 0.5em;
+	outline: none;
+	transition: 100ms border-color ease-in;
 }
+.inputField:focus:not(:focus-visible) {
+	outline: none;
+}
+.inputField:focus-within {
+	border: 1px solid rgba(0, 192, 0, 0.615);
+}
+
 .inputButton {
 	width: 100%;
 }

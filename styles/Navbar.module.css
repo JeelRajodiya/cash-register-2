@@ -16,7 +16,7 @@
 	border: 1px solid rgba(255, 255, 255, 0.14);
 	/* border-radius: 1mm; */
 	transition: 200ms background-color ease-in;
-	transition: 200ms color ease-in;
+	transition: 150ms color ease-in;
 	/* padding: 5mm; */
 }
 
@@ -34,6 +34,6 @@
 }
 
 .listItem:hover {
-	background-color: #fff;
+	background-color: var(--primary);
 	color: #000;
 }

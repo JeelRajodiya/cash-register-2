@@ -83,7 +83,7 @@ export default function Home() {
 							)
 						}
 						className={styles.inputButton}
-						variant="outlined"
+						variant="contained"
 						color="success"
 						sx={{ margin: "0.5em", fontSize: "1.5rem" }}
 					>
