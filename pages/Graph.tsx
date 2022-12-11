@@ -55,7 +55,7 @@ export default function Graph() {
 	}, [activeChart.type, activeChart.date]);
 	const [chartProps, setChartProps] = useState({
 		options: {
-			colors: ["#00BAEC"],
+			colors: ["#00ff00"],
 			stroke: {
 				width: 1,
 			},

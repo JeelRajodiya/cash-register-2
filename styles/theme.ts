@@ -13,7 +13,7 @@ export const theme = createTheme({
 			main: "#00BF2B",
 		},
 		error: {
-			main: "#a10000",
+			main: "#f10000",
 		},
 	},
 });
