@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import { getCookie } from "cookies-next";
-import { useState, useEffect, Dispatch } from "react";
+import { useState, useEffect, Dispatch, useRef } from "react";
 import Entry from "../components/Entry";
 import type { Entry as EntryProps } from "../pages/api/util/types";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -57,12 +57,15 @@ async function postData(
 
 export default function Home() {
 	const [latestEntries, setLatestEntries] = useState([]);
-	const [amount, setAmount] = useState<number | string>("");
+	const [amount, setAmount] = useState<number>(0);
 	const [description, setDescription] = useState("");
 	const [isLatestEntriesLoading, setIsLatestEntriesLoading] = useState(true);
 	const [dataUpdateHash, setDataUpdateHash] = useState(new Date().getTime());
 	const [isErrorVisible, setIsErrorVisible] = useState(false);
 	const [errorMsg, setErrorMsg] = useState("");
+
+	const amountFieldRef = useRef(null);
+	const descriptionFieldRef = useRef(null);
 
 	useEffect(() => {
 		// console.log("sd");
@@ -75,6 +78,13 @@ export default function Home() {
 			<div className={styles.inputArea}>
 				<div className={styles.inputLabel}>Amount</div>
 				<input
+					ref={amountFieldRef}
+					onKeyDown={(e) => {
+						if (e.key === "Enter") {
+							amountFieldRef.current.blur();
+							descriptionFieldRef.current.focus();
+						}
+					}}
 					className={styles.inputField}
 					onChange={(e) => setAmount(Number(e.target.value))}
 					value={amount}
@@ -82,6 +92,22 @@ export default function Home() {
 				></input>
 				<div className={styles.inputLabel}>Description</div>
 				<input
+					onKeyDown={(e) => {
+						if (e.key === "Backspace" && description === "") {
+							amountFieldRef.current.focus();
+							descriptionFieldRef.current.blur();
+						} else if (e.key === "Enter") {
+							descriptionFieldRef.current.blur();
+							postData(
+								amount,
+								description,
+								setDataUpdateHash,
+								setIsErrorVisible,
+								setErrorMsg
+							);
+						}
+					}}
+					ref={descriptionFieldRef}
 					className={styles.inputField}
 					value={description}
 					onChange={(e) => setDescription(e.target.value)}
@@ -90,7 +116,7 @@ export default function Home() {
 					<Button
 						onClick={() =>
 							postData(
-								amount as number,
+								amount,
 								description,
 								setDataUpdateHash,
 								setIsErrorVisible,
