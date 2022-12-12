@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Alert } from "@mui/material";
 import Layout from "../components/Layout";
 import styles from "../styles/Home.module.css";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
@@ -25,7 +25,9 @@ async function fetchRecent(
 async function postData(
 	amount: number,
 	description: string,
-	setDataHash: Dispatch<number>
+	setDataHash: Dispatch<number>,
+	setIsErrorVisible: Dispatch<boolean>,
+	setErrorMsg: Dispatch<string>
 ) {
 	const session = getCookie("session");
 	const response = await fetch("/api/entry", {
@@ -39,7 +41,16 @@ async function postData(
 			description,
 		}),
 	});
-	const data = await response.text();
+	if (response.status !== 200) {
+		setIsErrorVisible(true);
+		setErrorMsg("Error: " + (await response.text()));
+		setTimeout(() => {
+			setIsErrorVisible(false);
+		}, 5000);
+
+		return;
+	}
+	// const data = await response.text();
 	// console.log(data);
 	setDataHash(new Date().getTime());
 }
@@ -50,6 +61,8 @@ export default function Home() {
 	const [description, setDescription] = useState("");
 	const [isLatestEntriesLoading, setIsLatestEntriesLoading] = useState(true);
 	const [dataUpdateHash, setDataUpdateHash] = useState(new Date().getTime());
+	const [isErrorVisible, setIsErrorVisible] = useState(false);
+	const [errorMsg, setErrorMsg] = useState("");
 
 	useEffect(() => {
 		// console.log("sd");
@@ -79,7 +92,9 @@ export default function Home() {
 							postData(
 								amount as number,
 								description,
-								setDataUpdateHash
+								setDataUpdateHash,
+								setIsErrorVisible,
+								setErrorMsg
 							)
 						}
 						className={styles.inputButton}
@@ -91,7 +106,13 @@ export default function Home() {
 					</Button>
 					<Button
 						onClick={() =>
-							postData(-amount, description, setDataUpdateHash)
+							postData(
+								-amount,
+								description,
+								setDataUpdateHash,
+								setIsErrorVisible,
+								setErrorMsg
+							)
 						}
 						sx={{ margin: "0.5em", fontSize: "1.5rem" }}
 						variant="outlined"
@@ -101,6 +122,7 @@ export default function Home() {
 						<RemoveRoundedIcon />
 					</Button>
 				</div>
+				{isErrorVisible && <Alert severity="error">{errorMsg}</Alert>}
 			</div>
 			<div className={styles.recentEntriesWindow}>
 				<div className={styles.recentEntriesTitle}>
