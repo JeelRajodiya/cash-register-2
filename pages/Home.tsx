@@ -64,8 +64,10 @@ export default function Home() {
 	const [isErrorVisible, setIsErrorVisible] = useState(false);
 	const [errorMsg, setErrorMsg] = useState("");
 
-	const amountFieldRef = useRef(null);
-	const descriptionFieldRef = useRef(null);
+	const amountFieldRef =
+		useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
+	const descriptionFieldRef =
+		useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
 
 	useEffect(() => {
 		// console.log("sd");
@@ -92,7 +94,7 @@ export default function Home() {
 				></input>
 				<div className={styles.inputLabel}>Description</div>
 				<input
-					onKeyDown={(e) => {
+					onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
 						if (e.key === "Backspace" && description === "") {
 							amountFieldRef.current.focus();
 							descriptionFieldRef.current.blur();
