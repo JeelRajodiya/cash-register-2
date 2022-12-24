@@ -5,7 +5,6 @@
 	/* justify-content: space-between; */
 	border-top: 1px solid rgba(255, 255, 255, 0.121);
 	border-radius: 0.5em;
-	/* max-width: inherit; */
 }
 .entryViewer:hover {
 	background-color: rgba(255, 255, 255, 0.052);
@@ -23,7 +22,6 @@
 
 .entryDescription {
 	padding: 0.5em;
-	word-break: break-all;
 }
 
 .entryDate {
