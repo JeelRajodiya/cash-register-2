@@ -28,7 +28,7 @@
 	outline: none;
 }
 .inputField:focus-within {
-	border: 1px solid rgba(0, 192, 0, 0.615);
+	border: 1px solid #00c9c9b0;
 }
 
 .inputButton {
