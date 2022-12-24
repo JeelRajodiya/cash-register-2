@@ -45,7 +45,6 @@ export default function Entry(props: EntryProps2) {
 			<Button
 				color="error"
 				size="large"
-				sx={{ zIndex: -1 }}
 				onClick={() => {
 					deleteEntry(props.entryID);
 					props.setDataUpdateHash(new Date().getTime());
