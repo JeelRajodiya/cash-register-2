@@ -29,6 +29,15 @@ async function postData(
 	setIsErrorVisible: Dispatch<boolean>,
 	setErrorMsg: Dispatch<string>
 ) {
+	if (amount === 0) {
+		setIsErrorVisible(true);
+		setErrorMsg("Amount cannot be 0");
+		setTimeout(() => {
+			setIsErrorVisible(false);
+		}, 3000);
+
+		return;
+	}
 	const session = getCookie("session");
 	const response = await fetch("/api/entry", {
 		method: "POST",
