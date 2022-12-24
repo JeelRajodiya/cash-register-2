@@ -1,26 +1,27 @@
 .searchWindow {
 	width: 100%;
 	padding: 1em;
-	margin-top: 5em;
 }
 .searchBar {
 	margin: 1em 0;
 	display: flex;
 	background-color: #0f0f0f;
 	border-radius: 0.5em;
-	position: fixed;
+	position: sticky;
 	top: 1em;
 }
+
 .mainInput {
 	width: 100%;
 	background-color: #0f0f0f;
+
 	border: 1px solid #ffffff3f;
 	outline: none;
-	padding: 0.5em 1em;
+	padding: 0.7em 1em;
 	font-size: 1.2em;
 	border-right: none;
 	border-radius: 0.5em 0 0 0.5em;
-	transition: background-color 150ms ease-in, width 300ms ease-out;
+	transition: background-color 150ms ease-in;
 }
 .mainInput:focus:not(:focus-visible) {
 	outline: none;
@@ -31,5 +32,4 @@
 .mainInput:focus-within {
 	/* border: 1px solid rgba(0, 128, 0, 0.615); */
 	background-color: #171717;
-	width: 75vw;
 }
