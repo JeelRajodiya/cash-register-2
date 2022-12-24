@@ -60,3 +60,15 @@
 .entriesWrapper {
 	padding: 0 1em;
 }
+
+.refreshIcon {
+	width: 1em;
+	height: 1em;
+	cursor: pointer;
+	filter: invert(1);
+	transition: transform 300ms ease-in-out;
+}
+
+.refreshIcon:hover {
+	transform: rotate(270deg);
+}

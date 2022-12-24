@@ -8,6 +8,7 @@ import { useState, useEffect, Dispatch, useRef } from "react";
 import Entry from "../components/Entry";
 import type { Entry as EntryProps } from "../pages/api/util/types";
 import CircularProgress from "@mui/material/CircularProgress";
+import Image from "next/image";
 
 async function fetchRecent(
 	setData: Dispatch<any>,
@@ -98,7 +99,7 @@ export default function Home() {
 					}}
 					className={styles.inputField}
 					onChange={(e) => setAmount(Number(e.target.value))}
-					value={amount}
+					value={amount !== 0 ? amount : ""}
 					type="number"
 				></input>
 				<div className={styles.inputLabel}>Description</div>
@@ -164,8 +165,19 @@ export default function Home() {
 			<div className={styles.recentEntriesWindow}>
 				<div className={styles.recentEntriesTitle}>
 					Recent Entries{" "}
-					{isLatestEntriesLoading && (
+					{isLatestEntriesLoading ? (
 						<CircularProgress size={15}></CircularProgress>
+					) : (
+						<Image
+							src="/icons/refresh.svg"
+							width={20}
+							className={styles.refreshIcon}
+							height={20}
+							alt="refresh"
+							onClick={() =>
+								setDataUpdateHash(new Date().getTime())
+							}
+						/>
 					)}
 				</div>
 				<div className={styles.entriesWrapper}>
