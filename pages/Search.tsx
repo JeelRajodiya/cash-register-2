@@ -58,7 +58,13 @@ export default function Search() {
 								setDataUpdateHash
 							)
 						}
-						// sx={{ borderRadius: "2em" }}
+						sx={{
+							borderRight: "solid",
+							borderTop: "solid",
+							borderBottom: "solid",
+							borderWidth: "1px",
+							borderColor: "#ffffff3f",
+						}}
 						className={styles.searchBtn}
 					>
 						{isResultsLoading ? (

@@ -4,7 +4,8 @@
 	display: flex;
 	position: sticky;
 	bottom: 0;
-	border-radius: 5.5em;
+	border-radius: 0.5em;
+	width: 100%;
 	/* justify-content: space-around; */
 }
 .listItem {
@@ -24,13 +25,13 @@
 	border-left: none;
 	border-top: none;
 	border-bottom: none;
-	border-radius: 5.5em 0 0 5.5em;
+	border-radius: 0.5em 0 0 0.5em;
 }
 .listItem:nth-last-child(1) {
 	border-right: none;
 	border-top: none;
 	border-bottom: none;
-	border-radius: 0 5.5em 5.5em 0;
+	border-radius: 0 0.5em 0.5em 0;
 }
 
 .listItem:hover {
