@@ -1,11 +1,12 @@
 .navbar {
-	background-color: #000;
+	background-color: rgba(0, 0, 0, 0.386);
 	color: #fff;
 	display: flex;
 	position: sticky;
 	bottom: 0;
 	border-radius: 0.5em;
 	width: 100%;
+	backdrop-filter: blur(10px);
 	/* justify-content: space-around; */
 }
 .listItem {

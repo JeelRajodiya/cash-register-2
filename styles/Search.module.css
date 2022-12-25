@@ -5,23 +5,24 @@
 .searchBar {
 	margin: 1em 0;
 	display: flex;
-	background-color: #0f0f0f;
+	background-color: #1412121a;
 	border-radius: 0.5em;
 	position: sticky;
 	top: 1em;
+	backdrop-filter: blur(10px);
 }
 
 .mainInput {
 	width: 100%;
-	background-color: #0f0f0f;
+	background-color: #0f0f0f00;
 
-	border: 1px solid #ffffff3f;
+	border: 1px solid #1414143f;
 	outline: none;
 	padding: 0.7em 1em;
 	font-size: 1.2em;
 	border-right: none;
 	border-radius: 0.5em 0 0 0.5em;
-	transition: background-color 150ms ease-in;
+	transition: background-color 150ms ease-in, padding 150ms ease-in;
 }
 .mainInput:focus:not(:focus-visible) {
 	outline: none;
@@ -31,5 +32,7 @@
 }
 .mainInput:focus-within {
 	/* border: 1px solid rgba(0, 128, 0, 0.615); */
-	background-color: #171717;
+	/* background-color: #6d6d6d; */
+	background-color: white;
+	padding: 1em;
 }

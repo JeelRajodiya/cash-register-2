@@ -63,7 +63,7 @@ export default function Search() {
 							borderTop: "solid",
 							borderBottom: "solid",
 							borderWidth: "1px",
-							borderColor: "#ffffff3f",
+							borderColor: "#1414143f",
 						}}
 						className={styles.searchBtn}
 					>

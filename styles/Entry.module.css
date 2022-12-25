@@ -2,13 +2,16 @@
 	padding: 0.2em;
 	display: flex;
 	width: 100%;
+	/* margin: 0.4em 0; */
 	/* justify-content: space-between; */
-	border-top: 1px solid rgba(255, 255, 255, 0.121);
-	border-radius: 0.5em;
+	border-top: 1px solid rgba(0, 0, 0, 0.468);
+	/* box-shadow: -1px 0px 2px black; */
+	/* border-radius: 0.5em; */
 	/* max-width: inherit; */
+	transition: background-color 100ms ease-in;
 }
 .entryViewer:hover {
-	background-color: rgba(255, 255, 255, 0.052);
+	background-color: rgba(1, 213, 217, 0.167);
 }
 .entryViewer > button {
 	/* align-self: flex-end; */
