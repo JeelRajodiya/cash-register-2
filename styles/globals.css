@@ -21,7 +21,8 @@ a {
 }
 
 :root {
-	--primary: #00c9c8;
+	--primary: 5, 10, 48;
 	--error: #b0004f;
-	--secondary: #00c9c8;
+	--secondary: 170, 0, 0;
+	/* color: rgb(170, 0, 0); */
 }

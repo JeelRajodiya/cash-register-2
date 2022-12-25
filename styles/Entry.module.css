@@ -11,7 +11,12 @@
 	transition: background-color 100ms ease-in;
 }
 .entryViewer:hover {
-	background-color: rgba(1, 213, 217, 0.167);
+	background-color: rgba(var(--primary), 0.15);
+	border-radius: 0.5em;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.468);
+}
+.entryViewer:hover + .entryViewer {
+	border: none;
 }
 .entryViewer > button {
 	/* align-self: flex-end; */

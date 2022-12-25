@@ -8,7 +8,7 @@
 	margin: 1em;
 	padding: 0.5em;
 	border-radius: 5mm;
-	border: var(--primary) 1px solid;
+	border-bottom: rgba(var(--secondary), 0.5) 1px solid;
 }
 
 .inputLabel {
@@ -29,7 +29,7 @@
 	outline: none;
 }
 .inputField:focus-within {
-	border: 1px solid #00c9c9b0;
+	border: rgba(var(--primary), 1) 1px solid;
 }
 
 .inputButton {
@@ -46,7 +46,7 @@
 	padding: 0.5em;
 	/* background-color: rgba(135, 135, 135, 0.067); */
 	flex-direction: column;
-	border: var(--primary) 1px solid;
+	border-top: rgba(var(--secondary), 0.5) 1px solid;
 
 	border-radius: 5mm;
 }
@@ -68,7 +68,7 @@
 	width: 1em;
 	height: 1em;
 	cursor: pointer;
-	filter: invert(1);
+	/* filter: invert(1); */
 	transition: transform 300ms ease-in-out;
 }
 

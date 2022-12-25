@@ -137,7 +137,7 @@ export default function Home() {
 						}
 						className={styles.inputButton}
 						variant="contained"
-						color="success"
+						color="primary"
 						sx={{ margin: "0.5em", fontSize: "1.5rem" }}
 					>
 						<AddRoundedIcon />
