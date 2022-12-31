@@ -4,7 +4,7 @@
 	width: 100%;
 	/* margin: 0.4em 0; */
 	/* justify-content: space-between; */
-	border-top: 1px solid rgba(0, 0, 0, 0.468);
+	border-top: 1px solid black;
 	/* box-shadow: -1px 0px 2px black; */
 	/* border-radius: 0.5em; */
 	/* max-width: inherit; */
@@ -13,7 +13,8 @@
 .entryViewer:hover {
 	/* background-color: rgba(var(--primary), 0.15); */
 	border-radius: 0.5em;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.468);
+	border-bottom: 2px solid rgb(var(--secondary));
+	border-top: 2px solid rgb(var(--secondary));
 }
 .entryViewer:hover + .entryViewer {
 	border: none;
@@ -41,8 +42,17 @@
 }
 .green {
 	color: #00bf2b;
+	background-color: #00bf2d3d;
 }
 
 .red {
 	color: red;
+	background-color: rgba(255, 0, 0, 0.221);
+}
+
+.red,
+.green {
+	border-radius: 0.5em;
+	font-weight: 500;
+	height: min-content;
 }
