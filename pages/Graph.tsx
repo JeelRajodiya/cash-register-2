@@ -43,7 +43,6 @@ async function fetchGraphData(
 }
 
 export default function Graph() {
-	// const [chartData, setChartData] = useState<any>();
 	const nowTime = new Date();
 
 	const [activeChart, setActiveChart] = useState({
