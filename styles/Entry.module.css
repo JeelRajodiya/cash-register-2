@@ -2,26 +2,17 @@
 	padding: 0.2em;
 	display: flex;
 	width: 100%;
-	/* margin: 0.4em 0; */
-	/* justify-content: space-between; */
 	border-top: 1px solid black;
-	/* box-shadow: -1px 0px 2px black; */
-	/* border-radius: 0.5em; */
-	/* max-width: inherit; */
 	transition: background-color 100ms ease-in;
 }
 .entryViewer:hover {
-	/* background-color: rgba(var(--primary), 0.15); */
 	border-radius: 0.5em;
-	border-bottom: 2px solid rgb(var(--secondary));
-	border-top: 2px solid rgb(var(--secondary));
+	border: 1px solid;
 }
 .entryViewer:hover + .entryViewer {
 	border: none;
 }
 .entryViewer > button {
-	/* align-self: flex-end; */
-	/* justify-self: end; */
 	align-self: flex-start;
 	justify-self: flex-end;
 	margin-left: auto;

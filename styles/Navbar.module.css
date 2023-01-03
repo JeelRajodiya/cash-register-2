@@ -43,3 +43,11 @@
 	backdrop-filter: blur(5px);
 	background-color: rgba(var(--primary), 0.5);
 }
+
+.navIcon {
+	filter: invert();
+}
+
+.listItem:hover > .navIcon {
+	filter: none;
+}
