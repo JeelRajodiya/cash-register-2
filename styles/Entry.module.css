@@ -45,5 +45,7 @@
 .green {
 	border-radius: 0.5em;
 	font-weight: 500;
+	white-space: nowrap;
+	width: max-content;
 	height: min-content;
 }
