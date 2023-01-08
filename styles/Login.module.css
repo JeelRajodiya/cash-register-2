@@ -18,10 +18,7 @@
 	padding: 2mm;
 }
 .inputField {
-	background-color: black;
-	border: 1px solid rgba(255, 255, 255, 0.45);
 	outline: none;
-	color: #fff;
 	padding: 3mm 4mm;
 	border-radius: 2mm;
 	margin: 2mm 0;
@@ -31,9 +28,7 @@
 }
 
 .inputField:focus {
-	border: 1px solid rgba(255, 255, 255, 0.715);
 	padding: 4mm;
-	/* font-size: 1.1em; */
 }
 .label {
 	color: #fff;
@@ -46,6 +41,6 @@
 }
 
 .changeWindowLink {
-	color: #00bf2b;
+	color: rgb(var(--secondary));
 	font-weight: 500;
 }
